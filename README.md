@@ -8,6 +8,7 @@ Currently, the tool supports gadget chains such as: CodeIgniter4, Doctrine, Drup
 ## Requirements
 
 PHP >= 5.6 is required to run PHPGGC.
+PHP 8 is not yet supported.
 
 
 ## Usage
@@ -45,6 +46,8 @@ Monolog/RCE2                              1.5 <= 2.1.1+                   RCE (F
 Monolog/RCE3                              1.1.0 <= 1.10.0                 RCE (Function call)    __destruct          
 Monolog/RCE4                              ? <= 2.4.4+                     RCE (Command)          __destruct     *    
 Phalcon/RCE1                              <= 1.2.2                        RCE                    __wakeup       *    
+PHPCSFixer/FD1                            <= 2.17.3                       File delete            __destruct          
+PHPCSFixer/FD2                            <= 2.17.3                       File delete            __destruct          
 PHPExcel/FD1                              1.8.2+                          File delete            __destruct          
 PHPExcel/FD2                              <= 1.8.1                        File delete            __destruct          
 PHPExcel/FD3                              1.8.2+                          File delete            __destruct          
@@ -100,13 +103,14 @@ $ ./phpggc -l laravel
 Gadget Chains
 -------------
 
-NAME                                      VERSION                        TYPE             VECTOR         I    
-Laravel/RCE1                              5.4.27                         rce              __destruct          
-Laravel/RCE2                              5.5.39                         rce              __destruct          
-Laravel/RCE3                              5.5.39                         rce              __destruct     *    
-Laravel/RCE4                              5.5.39                         rce              __destruct          
-Laravel/RCE5                              5.8.30                         rce              __destruct     *    
-Laravel/RCE6                              5.5.*                          rce              __destruct     *    
+NAME            VERSION        TYPE                   VECTOR        I    
+Laravel/RCE1    5.4.27         RCE (Function call)    __destruct         
+Laravel/RCE2    5.5.39         RCE (Function call)    __destruct         
+Laravel/RCE3    5.5.39         RCE (Function call)    __destruct    *    
+Laravel/RCE4    5.5.39         RCE (Function call)    __destruct         
+Laravel/RCE5    5.8.30         RCE (PHP code)         __destruct    *    
+Laravel/RCE6    5.5.*          RCE (PHP code)         __destruct    *    
+Laravel/RCE7    ? <= 8.16.1    RCE (Function call)    __destruct    *
 
 ```
 
@@ -184,6 +188,7 @@ And you'd call phpggc like so:
 $ ./phpggc -w /tmp/my_wrapper.php slim/rce1 system id
 a:1:{s:7:"message";O:18:"Slim\Http\Response":2:{...}}
 ```
+
 
 ## PHAR(GGC)
 
@@ -298,6 +303,12 @@ Otherwise, I'd be glad to answer your questions.
 
 The `--new <framework> <type>` command-line option can be used to create the directory and file structure for a new gadget chain.
 For instance, use `./phpggc -n Drupal RCE` would create a new Drupal RCE gadgetchain.
+
+
+
+## Docker
+
+If you don't want to install PHP, you can use `docker build`.
 
 
 # License
