@@ -38,46 +38,74 @@ class PHPGGC
     {
         global $argv;
 
-        $parameters = $this->parse_cmdline($argv);
+        $arguments = $this->parse_cmdline($argv);
 
-        if($parameters === null)
+        if($arguments === null)
             return;
 
-        if(count($parameters) < 1)
+        if(count($arguments) < 1)
         {
             $this->help();
             return;
         }
 
-        $class = array_shift($parameters);
+        $class = array_shift($arguments);
         $gc = $this->get_gadget_chain($class);
 
         $this->setup_enhancements();
-        $parameters = $this->get_type_parameters($gc, $parameters);
-        $generated = $this->serialize($gc, $parameters);
 
         if(in_array('test-payload', $this->options))
-            $this->test_payload($gc, $generated);
+        {
+            if(count($arguments) > 0)
+                $this->o(
+                    "WARNING: Testing a payload ignores payload arguments."
+                );
+            $this->test_payload($gc);
+        }
         else
+        {
+            $arguments = $this->get_type_arguments($gc, $arguments);
+            $generated = $this->serialize($gc, $arguments);
             $this->output_payload($generated);
+        }
     }
 
     /**
-     * Runs generated payload using the ./template/test_payload.php script.
-     * We have to use system() here, because the classes used during the
-     * deserialization process are already defined by PHPGGC, and there is no
-     * mechanism allowing to delete classes in PHP. Therefore, a new PHP process
-     * has to be created.
+     * Tests whether the payload works in the current environement.
+     * PHPGGC will generate test arguments, include vendor/autoload.php, run the
+     * payload, and check whether it was run successfully.
+     * The script will exit with status 0 if the payload triggered, 1 otherwise.
      */
-    public function test_payload($gc, $payload)
+    public function test_payload($gc)
     {
         $this->o('Trying to deserialize payload...');
+        $arguments = $gc->test_setup();
+        $payload = $this->serialize($gc, $arguments);
         $vector = isset($this->parameters['phar']) ? 'phar' : $gc::$vector;
-        system(
+        
+        # We have to use system() here, because the classes used during the
+        # deserialization process are already defined by PHPGGC, and there is no
+        # mechanism allowing to delete classes in PHP. Therefore, a new PHP process
+        # has to be created.
+        $output = shell_exec(
             escapeshellarg(DIR_LIB . '/test_payload.php') . ' ' .
             escapeshellarg($vector) . ' ' .
             escapeshellarg(base64_encode($payload))
         );
+        $result = $gc->test_confirm($arguments, $output);
+
+        $gc->test_cleanup($arguments);
+
+        if($result)
+        {
+            $this->o('SUCCESS: Payload triggered !');
+            exit(0);
+        }
+        else
+        {
+            $this->o('FAILURE: Payload did not trigger !');
+            exit(1);
+        }    
     }
 
     /**
@@ -129,12 +157,24 @@ class PHPGGC
     {
         $enhancements = [];
 
+        if(
+            in_array('ascii-strings', $this->options) &&
+            in_array('armor-strings', $this->options)
+        ) {
+            $this->e(
+                'Both ascii-strings and armor-strings are both set but they ' .
+                'are mutually exclusive'
+            );
+        }
+
         if(isset($this->parameters['wrapper']))
             $enhancements[] = new Enhancement\Wrapper($this->parameters['wrapper']);
         if(in_array('fast-destruct', $this->options))
             $enhancements[] = new Enhancement\FastDestruct();
         if(in_array('ascii-strings', $this->options))
-            $enhancements[] = new Enhancement\ASCIIStrings();
+            $enhancements[] = new Enhancement\ASCIIStrings(false);
+        if(in_array('armor-strings', $this->options))
+            $enhancements[] = new Enhancement\ASCIIStrings(true);
         if(isset($this->parameters['plus-numbers']))
             $enhancements[] = new Enhancement\PlusNumbers(
                 $this->parameters['plus-numbers']
@@ -201,7 +241,7 @@ class PHPGGC
      */
     public static function autoload_register()
     {
-        spl_autoload_register(array(static::class, 'autoload'));
+        spl_autoload_register([static::class, 'autoload']);
     }
 
     /**
@@ -263,7 +303,7 @@ class PHPGGC
 
         $base = DIR_GADGETCHAINS . '/' . $name . '/' . $type . '/';
 
-        for($i=1;file_exists($base . $i);$i++);
+        for($i=1; file_exists($base . $i); $i++);
 
         $base = $base . $i;
         mkdir($base, 0777, true);
@@ -527,20 +567,27 @@ class PHPGGC
         $this->o('     right after the unserialize() call, as opposed to at the end of the');
         $this->o('     script');
         $this->o('  -a, --ascii-strings');
-        $this->o('     Uses the \'S\' serialization format instead of the standard \'s\'. This');
-        $this->o('     replaces every non-ASCII value to an hexadecimal representation:');
-        $this->o('     s:5:"A<null_byte>B<cr><lf>"; -> S:5:"A\\00B\\09\\0D";');
+        $this->o('     Uses the \'S\' serialization format instead of the standard \'s\' for non-printable chars.');
+        $this->o('     This replaces every non-ASCII value to an hexadecimal representation:');
+        $this->o('       s:5:"A<null_byte>B<cr><lf>"; -> S:5:"A\\00B\\09\\0D";');
         $this->o('     This is experimental and it might not work in some cases.');
+        $this->o('  -A, --armor-strings');
+        $this->o('     Uses the \'S\' serialization format instead of the standard \'s\' for every char.');
+        $this->o('     This replaces every character to an hexadecimal representation:');
+        $this->o('       s:5:"A<null_byte>B<cr><lf>"; -> S:5:"\\41\\00\\42\\09\\0D";');
+        $this->o('     This is experimental and it might not work in some cases.');
+        $this->o('     Note: Since strings grow by a factor of 3 using this option, the payload can get');
+        $this->o('     really long.');
         $this->o('  -n, --plus-numbers <types>');
         $this->o('     Adds a + symbol in front of every number symbol of the given type.');
         $this->o('     For instance, -n iO adds a + in front of every int and object name size:');
         $this->o('     O:3:"Abc":1:{s:1:"x";i:3;} -> O:+3:"Abc":1:{s:1:"x";i:+3;}');
         $this->o('     Note: Since PHP 7.2, only i and d (float) types can have a +');
         $this->o('  -w, --wrapper <wrapper>');
-        $this->o('     Specifies a file containing either or both functions:');
-        $this->o('       - process_parameters($parameters): called right before object is created');
-        $this->o('       - process_object($object): called right before the payload is serialized');
-        $this->o('       - process_serialized($serialized): called right after the payload is serialized');
+        $this->o('     Specifies a file containing at least one wrapper functions:');
+        $this->o('       - process_parameters(array $parameters): called right before object is created');
+        $this->o('       - process_object(object $object): called right before the payload is serialized');
+        $this->o('       - process_serialized(string $serialized): called right after the payload is serialized');
         $this->o('');
         $this->o('ENCODING');
         $this->o('  -s, --soft   Soft URLencode');
@@ -553,7 +600,7 @@ class PHPGGC
         $this->o('CREATION');
         $this->o('  -N, --new <framework> <type>');
         $this->o('    Creates the file structure for a new gadgetchain for given framework');
-        $this->o('    Example: ./phpggc -n Drupal RCE');
+        $this->o('    Example: ./phpggc -N Drupal RCE');
         $this->o('  --test-payload');
         $this->o('    Instead of displaying or storing the payload, includes vendor/autoload.php and unserializes the payload.');
         $this->o('    The test script can only deserialize __destruct, __wakeup, __toString and PHAR payloads.');
@@ -611,6 +658,7 @@ class PHPGGC
             # Enhancements
             'fast-destruct' => false,
             'ascii-strings' => false,
+            'armor-strings' => false,
             'plus-numbers' => true,
             # Encoders
             'soft' => false,
@@ -632,7 +680,9 @@ class PHPGGC
             'phar-jpeg' => 'pj',
             'phar-prefix' => 'pp',
             'phar-filename' => 'pf',
-            'new' => 'N'
+            'new' => 'N',
+            'ascii-strings' => 'a',
+            'armor-strings' => 'A'
         ] + $abbreviations;
 
         # If we are in this function, the argument starts with a dash, so we
@@ -784,16 +834,13 @@ class PHPGGC
     }
 
     /**
-     * Convert command line parameters into an array of named parameters,
+     * Converts command line arguments into an array of named arguments,
      * specific to the type of payload.
      */
-    protected function get_type_parameters($gc, $parameters)
+    protected function get_type_arguments($gc, $arguments)
     {
-        $arguments = $gc::$parameters;
-
-        $values = @array_combine($arguments, $parameters);
-
-        if($values === false)
+        $keys = $gc::$parameters;
+        if(count($keys) != count($arguments))
         {
             $this->o($gc, 2);
             $this->e(
@@ -801,8 +848,7 @@ class PHPGGC
                 $this->_get_command_line_gc($gc)
             );
         }
-
-        return $values;
+        return array_combine($keys, $arguments);
     }
 
     protected function _get_command_line_gc($gc)
