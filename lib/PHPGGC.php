@@ -88,6 +88,7 @@ class PHPGGC
         # mechanism allowing to delete classes in PHP. Therefore, a new PHP process
         # has to be created.
         $output = shell_exec(
+            PHP_BINARY . ' ' .
             escapeshellarg(DIR_LIB . '/test_payload.php') . ' ' .
             escapeshellarg($vector) . ' ' .
             escapeshellarg(base64_encode($payload))
@@ -231,7 +232,7 @@ class PHPGGC
         }, $classes);
 
         $gcs = array_combine($names, $classes);
-        ksort($gcs);
+        ksort($gcs, SORT_NATURAL);
 
         return $gcs;
     }
@@ -252,7 +253,7 @@ class PHPGGC
     {
         $file = DIR_LIB . '/' . str_replace('\\', '/', $class) . '.php';
         if(file_exists($file))
-            require_once $file;
+            require_once($file);
     }
 
     /**
