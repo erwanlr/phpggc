@@ -4,7 +4,9 @@ namespace PHPGGC\GadgetChain;
 
 abstract class FileDelete extends \PHPGGC\GadgetChain
 {
-    public static $type = self::TYPE_FD;
+    public static $type = 'FD';
+    public static $type_description = 'File delete';
+
     public static $parameters = [
         'remote_path'
     ];

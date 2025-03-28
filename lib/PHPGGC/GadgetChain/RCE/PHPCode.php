@@ -9,11 +9,12 @@ namespace PHPGGC\GadgetChain\RCE;
  */
 abstract class PHPCode extends \PHPGGC\GadgetChain\RCE
 {
-    public static $type = self::TYPE_RCE_PHPCODE;
+    public static $type_description = 'RCE: PHP Code';
+
     public static $parameters = [
         'code'
     ];
-    
+
     public function test_setup()
     {
         # TODO file_put_contents() might be a better option here, but it'll work
@@ -23,4 +24,6 @@ abstract class PHPCode extends \PHPGGC\GadgetChain\RCE
             'code' => 'system(' . var_export($command, true) . ');'
         ];
     }
+
+
 }

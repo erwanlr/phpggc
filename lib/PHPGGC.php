@@ -20,9 +20,12 @@ PHPGGC::include_gadget_chains();
  * This class is meant to handle CLI parameters and return a serialized payload
  * under different forms. 
  */
-class PHPGGC
+final class PHPGGC
 {
-    protected $chains;
+    private $chains;
+    private $options;
+    private $parameters;
+    private $enhancements;
 
     public function __construct()
     {
@@ -96,7 +99,6 @@ class PHPGGC
         $result = $gc->test_confirm($arguments, $output);
 
         $gc->test_cleanup($arguments);
-
         if($result)
         {
             $this->o('SUCCESS: Payload triggered !');
@@ -172,6 +174,8 @@ class PHPGGC
             $enhancements[] = new Enhancement\Wrapper($this->parameters['wrapper']);
         if(in_array('fast-destruct', $this->options))
             $enhancements[] = new Enhancement\FastDestruct();
+        if(in_array('public-properties', $this->options))
+            $enhancements[] = new Enhancement\PublicProperties();
         if(in_array('ascii-strings', $this->options))
             $enhancements[] = new Enhancement\ASCIIStrings(false);
         if(in_array('armor-strings', $this->options))
@@ -191,7 +195,10 @@ class PHPGGC
         $parameters = $this->process_parameters($gc, $parameters);
         $object = $gc->generate($parameters);
         $object = $this->process_object($gc, $object);
-        $serialized = serialize($object);
+        if(in_array('session-encode', $this->options))
+            $serialized = $this->session_encode($object);
+        else
+            $serialized = serialize($object);
         $serialized = $this->process_serialized($gc, $serialized);
         return $serialized;
     }
@@ -267,15 +274,6 @@ class PHPGGC
         # Check type
 
         $type = strtoupper($type);
-        $reflection = new ReflectionClass($namespace);
-        $constant = 'TYPE_' . $type;
-        $value = $reflection->getConstant($constant);
-
-        if($value === false)
-        {
-            $this->o('Invalid type: ' . $type);
-            return;
-        }
 
         # Match base class from type
 
@@ -285,11 +283,10 @@ class PHPGGC
         {
             $classname = substr(basename($file), 0, -4);
             $classname = $namespace . '\\' . $classname;
-            $reflection = new ReflectionClass($classname);
 
-            if($reflection->getProperty('type')->getValue() === $value)
+            if($classname::$type === $type)
             {
-                $baseclass = $reflection;
+                $baseclass = new ReflectionClass($classname);
                 break;
             }
         }
@@ -374,6 +371,26 @@ class PHPGGC
         return $phar->generate();
     }
 
+    #
+    # Session Encode
+    #
+
+    /**
+     * Uses session_encode() instead of serialize().
+     * 
+     * This is useful if you have an existing arbitrary file write primitive, but the
+     * web root directory is non-writable. In such cases, it is possible to forge a 
+     * session file containing an unserialize() payload and trigger the chain by 
+     * visiting any webpage that invokes session_start().
+     */
+    function session_encode($object)
+    {
+        $_SESSION['_'] = $object;
+        $serialized = session_encode();
+        session_destroy();
+        return $serialized;
+    }
+
     /**
      * Applies command line parameters and options to the gadget chain
      * parameters.
@@ -416,11 +433,11 @@ class PHPGGC
                     $serialized = base64_encode($serialized);
                     break;
                 case 'url':
-                    $serialized = urlencode($serialized);
+                    $serialized = rawurlencode($serialized);
                     break;
                 case 'soft':
-                    $keys = str_split("%\x00\n\r\t+;");
-                    $values = array_map('urlencode', $keys);
+                    $keys = str_split("%\x00\n\r\t+; ");
+                    $values = array_map('rawurlencode', $keys);
                     $serialized = str_replace($keys, $values, $serialized);
                     break;
                 case 'json':
@@ -514,7 +531,7 @@ class PHPGGC
             $data[] = [
                 $chain::get_name(),
                 $chain::$version,
-                $chain::$type,
+                $chain::$type_description,
                 $chain::$vector,
                 ($chain::$information ? '*' : '')
             ];
@@ -562,6 +579,10 @@ class PHPGGC
         $this->o('  -pf, --phar-filename <filename>');
         $this->o('     Defines the name of the file contained in the generated PHAR (default: test.txt)');
         $this->o('');
+        $this->o('SESSION ENCODE');
+        $this->o('  -se, --session-encode');
+        $this->o('     Uses session_encode() instead of serialize() to generate the payload.');
+        $this->o('');
         $this->o('ENHANCEMENTS');
         $this->o('  -f, --fast-destruct');
         $this->o('     Applies the fast-destruct technique, so that the object is destroyed');
@@ -579,6 +600,11 @@ class PHPGGC
         $this->o('     This is experimental and it might not work in some cases.');
         $this->o('     Note: Since strings grow by a factor of 3 using this option, the payload can get');
         $this->o('     really long.');
+        $this->o('  -pub, --public-properties');
+        $this->o('     Attempts to convert references to protected or private properties within the serialized');
+        $this->o('     payload to public. The resulting payload should contain no null bytes and may be a little');
+        $this->o('     shorter.');
+        $this->o('     This is experimental and it might not work in some cases.');
         $this->o('  -n, --plus-numbers <types>');
         $this->o('     Adds a + symbol in front of every number symbol of the given type.');
         $this->o('     For instance, -n iO adds a + in front of every int and object name size:');
@@ -656,8 +682,11 @@ class PHPGGC
             'phar-jpeg' => true,
             'phar-prefix' => true,
             'phar-filename' => true,
+            # Session Encode
+            'session-encode' => false,
             # Enhancements
             'fast-destruct' => false,
+            'public-properties' => false,
             'ascii-strings' => false,
             'armor-strings' => false,
             'plus-numbers' => true,
@@ -681,9 +710,11 @@ class PHPGGC
             'phar-jpeg' => 'pj',
             'phar-prefix' => 'pp',
             'phar-filename' => 'pf',
+            'public-properties' => 'pub',
             'new' => 'N',
             'ascii-strings' => 'a',
-            'armor-strings' => 'A'
+            'armor-strings' => 'A',
+            'session-encode' => 'se',
         ] + $abbreviations;
 
         # If we are in this function, the argument starts with a dash, so we
@@ -790,6 +821,10 @@ class PHPGGC
                     $this->o($gc, 2);
                     $this->o($this->_get_command_line_gc($gc));
                     return;
+                case 'session-encode':
+                    session_name('phpggc');
+                    session_start();
+                    break;
             }
         }
 
@@ -845,7 +880,7 @@ class PHPGGC
         {
             $this->o($gc, 2);
             $this->e(
-                'Invalid arguments for type "' . $gc::$type . '" ' . "\n" .
+                'Invalid arguments for type "' . $gc::$type_description . '" ' . "\n" .
                 $this->_get_command_line_gc($gc)
             );
         }

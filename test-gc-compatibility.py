@@ -325,7 +325,7 @@ class Package:
     def get_package_versions(self):
         versions, _ = self._executor.composer("show", "-a", self.name)
         try:
-            versions = re.search(r"versions :(.*)\ntype", versions).group(1)
+            versions = re.search(r"\nversions :(.*)\n", versions).group(1)
         except AttributeError:
             print(f"[red]Package [b]{self.name}[/b] has not version candidates (misspelled ?)")
             exit(1)    
@@ -387,7 +387,7 @@ class PackageVersion:
         _, stderr = self._executor.install(
             "--no-scripts",
             "--no-interaction",
-            "--no-plugins",
+            # "--no-plugins",
             "--quiet",
             "--ignore-platform-req=ext-*",
             f"{self.package}:{self.version}",
